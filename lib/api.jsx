@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:7000/api";
+const BASE_URL = "https://pocketmoney-api-final.vercel.app/api";
 
 // export const api = async (endpoint, method = "GET", body) => {
 //   const res = await fetch(`${BASE_URL}${endpoint}`, {
