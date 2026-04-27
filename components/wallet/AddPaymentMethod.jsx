@@ -6,9 +6,12 @@ import toast from "react-hot-toast";
 import { api } from "@/lib/api";
 import AddPaymentButton from "./AddPaymentButton";
 import { PaymentMethodSkeleton } from "../loaders/PaymentMethodSkeleton";
+import { useRouter } from "next/navigation";
 
 
 export default function AddPaymentMethod({ getMethods }) {
+
+  const router = useRouter();
 
   const [methodType, setMethodType] = useState("");
   const [accountNumber, setAccountNumber] = useState("");
@@ -24,7 +27,7 @@ export default function AddPaymentMethod({ getMethods }) {
   useEffect(() => {
     setSavedMethod(getMethods || null); 
     setLoading(false);
-  }, []);
+  }, [getMethods]);
 
   // ✅ Submit
   const handleSubmit = async () => {
@@ -43,14 +46,17 @@ export default function AddPaymentMethod({ getMethods }) {
       if (res.success) {
         toast.success("Payment method saved ✅");
 
-        setSavedMethod({
-          methodType,
-          accountNumber,
-          accountHolderName,
-        });
+        // setSavedMethod({
+        //   methodType,
+        //   accountNumber,
+        //   accountHolderName,
+        // });
+
+        setSavedMethod(res.data)
 
         setPopup(false);
         setIsEditing(false);
+        router.refresh();
       } else {
         toast.error(res.message);
       }
