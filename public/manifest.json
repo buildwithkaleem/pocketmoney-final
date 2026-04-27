@@ -1,0 +1,17 @@
+{
+  "name": "PocketMoney",
+  "short_name": "PocketMoney",
+  "description": "Earn and withdraw rewards easily",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#16a34a",
+  "theme_color": "#16a34a",
+  "icons": [
+    
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
