@@ -1,18 +1,37 @@
+
 "use client";
 
 import { useEffect, useState } from "react";
 import { api } from "@/lib/api";
 import toast from "react-hot-toast";
 
-export default function WithdrawalHistory({ getWithdrawals }) {
+export default function WithdrawalHistory() {
   const [withdrawals, setWithdrawals] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    setWithdrawals(getWithdrawals || null);
-    setLoading(false);
-  }, []);
+  // ✅ Fetch withdrawals directly
+  const fetchWithdrawals = async () => {
+    try {
+      const res = await api("/user/get-withdrawals");
 
+      if (res.success) {
+        setWithdrawals(res?.data?.withdrawals || []);
+      } else {
+        setWithdrawals([]);
+        console.log("Error:", res.message);
+      }
+
+    } catch (error) {
+      console.log("Server error:", error.message);
+      toast.error("Failed to load withdrawals ❌");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchWithdrawals();
+  }, []);
 
   // 🎨 Status color helper
   const getStatusColor = (status) => {
@@ -26,6 +45,7 @@ export default function WithdrawalHistory({ getWithdrawals }) {
     }
   };
 
+  // ⏳ Loading
   if (loading) {
     return (
       <div className="text-center mt-10 text-gray-500">
@@ -34,7 +54,8 @@ export default function WithdrawalHistory({ getWithdrawals }) {
     );
   }
 
-  if (!withdrawals?.length) {
+  // ❌ Empty
+  if (!withdrawals.length) {
     return (
       <div className="text-center mt-10 text-gray-500">
         No withdrawal history found
@@ -42,12 +63,14 @@ export default function WithdrawalHistory({ getWithdrawals }) {
     );
   }
 
+  // ✅ Data
   return (
-    <div className="flex justify-center px-2 mb-[100px] ">
+    <div className="flex justify-center px-2 mb-[100px]">
       <div className="w-full max-w-md space-y-3">
 
-        <div><h2 className="text-green-500 text-2xl text-center mb-6 " >Transaction History (Withdrawals)</h2></div>
-
+        <h2 className="text-green-500 text-2xl text-center mb-6">
+          Transaction History (Withdrawals)
+        </h2>
 
         {withdrawals.map((w) => (
           <div
@@ -58,7 +81,7 @@ export default function WithdrawalHistory({ getWithdrawals }) {
             <div className="flex justify-between mb-2">
               <span className="text-gray-500">Amount</span>
               <span className="font-bold text-green-600">
-                {w.amount}
+                Rs. {w.amount}
               </span>
             </div>
 
@@ -78,11 +101,9 @@ export default function WithdrawalHistory({ getWithdrawals }) {
             <div className="flex justify-between">
               <span className="text-gray-500">Date</span>
               <span className="text-sm">
-                {
-                  w.createdAt
-                    ? new Date(w.createdAt).toLocaleDateString()
-                    : "N/A"
-                }
+                {w.createdAt
+                  ? new Date(w.createdAt).toLocaleDateString()
+                  : "N/A"}
               </span>
             </div>
           </div>
