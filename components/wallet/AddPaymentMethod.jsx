@@ -23,6 +23,8 @@ export default function AddPaymentMethod({ getMethods }) {
   const [savedMethod, setSavedMethod] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
 
+  console.log(getMethods)
+
   // ✅ Fetch on load
   useEffect(() => {
     setSavedMethod(getMethods || null); 
