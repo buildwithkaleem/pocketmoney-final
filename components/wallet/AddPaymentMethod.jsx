@@ -91,6 +91,8 @@ export default function AddPaymentMethod() {
     setAccountNumber(savedMethod.accountNumber);
     setAccountHolderName(savedMethod.accountHolderName || ""); // 🔥 NEW
 
+  
+    
     setIsEditing(true);
     setPopup(true);
   };
