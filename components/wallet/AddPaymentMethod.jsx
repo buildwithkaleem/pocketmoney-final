@@ -9,7 +9,7 @@ import { PaymentMethodSkeleton } from "../loaders/PaymentMethodSkeleton";
 import { useRouter } from "next/navigation";
 
 
-export default function AddPaymentMethod({ getMethods }) {
+export default function AddPaymentMethod() {
 
   const router = useRouter();
 
@@ -23,12 +23,22 @@ export default function AddPaymentMethod({ getMethods }) {
   const [savedMethod, setSavedMethod] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
 
-  console.log(getMethods)
+
 
   // ✅ Fetch on load
   useEffect(() => {
-    setSavedMethod(getMethods || null); 
-    setLoading(false);
+  const getPaymentmethod = async()=>{
+    try {
+      const getPaymentRes = await api("/user/get-payment-method");
+      if (getPaymentRes.success){
+        setSavedMethod(getPaymentRes.data)
+        setLoading(false);
+      }
+    } catch (error) {
+
+    }
+   }
+    getPaymentmethod()
   }, []);
 
   // ✅ Submit
