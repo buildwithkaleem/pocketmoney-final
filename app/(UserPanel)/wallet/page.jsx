@@ -1,4 +1,3 @@
-"use client"
 import AppBar from '@/components/AppBar'
 import BottomNav from '@/components/BottomNav'
 import AddPaymentMethod from '@/components/wallet/AddPaymentMethod'
@@ -9,25 +8,25 @@ import { serverApi } from '@/lib/serverApi'
 
 import React from 'react'
 
-// export const dynamic = "force-dynamic";
+export const dynamic = "force-dynamic";
 
 
 const page = async () => {
 
-  // const rewardRes = await serverApi("/bounty/get-claimed-reward-count");
-  // const getPaymentRes = await api("/user/get-payment-method");
-  // const getWithdrawals = await serverApi("/user/get-withdrawals");
+  const rewardRes = await serverApi("/bounty/get-claimed-reward-count");
+  const getPaymentRes = await serverApi("/user/get-payment-method");
+  const getWithdrawals = await serverApi("/user/get-withdrawals");
 
-  // console.log(getPaymentRes?.data);
+  // console.log(getWithdrawals.data.withdrawals);
 
 
   return (
     <div className=''>
       <AppBar />
-      {/* <SummaryCard rewardCount={rewardRes?.data?.reward?.rewardCount || 0} /> */}
-      <AddPaymentMethod />
-      {/* <WithdrawalBox getMethods={getPaymentRes?.data} /> */}
-      {/* <WithdrawalHistory getWithdrawals={getWithdrawals?.data?.withdrawals} /> */}
+      <SummaryCard rewardCount={rewardRes?.data?.reward?.rewardCount || 0} />
+      <AddPaymentMethod getMethods={getPaymentRes?.data} />
+      <WithdrawalBox getMethods={getPaymentRes?.data} />
+      <WithdrawalHistory getWithdrawals={getWithdrawals?.data?.withdrawals} />
       <BottomNav />
     </div>
   )
