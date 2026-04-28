@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useEffect, useState } from "react";
@@ -9,7 +10,7 @@ export default function AdminWithdrawals() {
   const [loading, setLoading] = useState(true);
   const [updatingId, setUpdatingId] = useState(null);
 
-  // 🔥 GET ALL WITHDRAWALS
+  // 🔥 FETCH
   useEffect(() => {
     fetchWithdrawals();
   }, []);
@@ -46,9 +47,7 @@ export default function AdminWithdrawals() {
 
         setWithdrawals((prev) =>
           prev.map((w) =>
-            w._id === id
-              ? { ...w, status }
-              : w
+            w._id === id ? { ...w, status } : w
           )
         );
       } else {
@@ -91,43 +90,56 @@ export default function AdminWithdrawals() {
             key={w._id}
             className="bg-white dark:bg-black/40 p-4 rounded-2xl shadow border space-y-2"
           >
+
+            {/* 👤 USER INFO */}
             <p>
               <span className="font-semibold">User:</span>{" "}
-              {w.user?.userName}
+              {w.user?.userName || "N/A"}
             </p>
 
             <p>
               <span className="font-semibold">Email:</span>{" "}
-              {w.user?.email}
+              {w.user?.email || "N/A"}
             </p>
 
             <p>
               <span className="font-semibold">Balance:</span>{" "}
-              {w.user?.balance}
+              Rs.{w.user?.balance ?? 0}
             </p>
 
+            {/* 💳 PAYMENT METHOD (NEW FROM API) */}
+            <div className="mt-2 p-2 bg-gray-100 dark:bg-gray-800 rounded-lg text-sm">
+              <p className="font-semibold mb-1">Payment Method</p>
+
+              <p>Method: {w.paymentMethod?.methodType || "N/A"}</p>
+              <p>Name: {w.paymentMethod?.accountHolderName || "N/A"}</p>
+              <p>Account: {w.paymentMethod?.accountNumber || "N/A"}</p>
+            </div>
+
+            {/* 💰 AMOUNT */}
             <p>
               <span className="font-semibold">Amount:</span>{" "}
               <span className="text-green-600 font-bold">
-                ${w.amount}
+                Rs.{w.amount}
               </span>
             </p>
 
+            {/* 📌 STATUS */}
             <p>
               <span className="font-semibold">Status:</span>{" "}
               <span
                 className={`font-semibold ${w.status === "approved"
-                    ? "text-green-600"
-                    : w.status === "rejected"
-                      ? "text-red-600"
-                      : "text-yellow-500"
+                  ? "text-green-600"
+                  : w.status === "rejected"
+                    ? "text-red-600"
+                    : "text-yellow-500"
                   }`}
               >
                 {w.status}
               </span>
             </p>
 
-            {/* ACTIONS */}
+            {/* ⚡ ACTIONS */}
             {w.status === "pending" && (
               <div className="flex gap-2 mt-3">
 

@@ -23,7 +23,7 @@ export default function AppBar() {
   const hendalLogOut = async ()=>{
     setLoading(true);
     try {
-      const res = await api("/user/logout", "Get");
+      const res = await api("/user/logout");
      if(res.success){
        toast.success(`Your Account Successfully LogOut ✅`);
        setUser(null);
