@@ -165,6 +165,16 @@ export default function AdminDailyClaimedRecords() {
             </p>
 
             <p>
+              <span className="font-semibold">Red Code:</span>{" "}
+              {r.redCode}
+            </p>
+
+            <p>
+              <span className="font-semibold">Device Name:</span>{" "}
+              {r.device}
+            </p>
+
+            <p>
               <span className="font-semibold">Date:</span>{" "}
               {new Date(r.createdAt).toLocaleString()}
             </p>
