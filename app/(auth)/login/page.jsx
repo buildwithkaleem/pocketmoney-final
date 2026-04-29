@@ -7,6 +7,8 @@ import Link from "next/link";
 import { useUser } from "@/context/UserContext";
 import toast from "react-hot-toast";
 import { DotsLoader } from "@/components/loaders/DotsLoader";
+import InputField from "@/components/form/InputField";
+import PasswordInput from "@/components/form/PasswordInput";
 
 export default function LoginPage() {
   const [form, setForm] = useState({
@@ -93,26 +95,22 @@ export default function LoginPage() {
         <form onSubmit={handleLogin} className="space-y-4">
 
           {/* Email */}
-          <input
+          <InputField
+            label="Email"
             type="email"
             name="email"
-            placeholder="Email"
             value={form.email}
+            placeholder="Enter Email"
             onChange={handleChange}
-            required
-            className="w-full p-3 rounded-lg border border-green-300 focus:outline-none focus:ring-2 focus:ring-green-500 dark:bg-gray-900 dark:text-white"
           />
 
           {/* Password */}
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
+          <PasswordInput
+            label="Password"
             value={form.password}
             onChange={handleChange}
-            required
-            className="w-full p-3 rounded-lg border border-green-300 focus:outline-none focus:ring-2 focus:ring-green-500 dark:bg-gray-900 dark:text-white"
           />
+
 
 
           <div className="flex justify-end mb-4">

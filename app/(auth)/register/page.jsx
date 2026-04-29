@@ -5,6 +5,8 @@ import { api } from "@/lib/api";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import toast from "react-hot-toast";
+import InputField from "@/components/form/InputField";
+import PasswordInput from "@/components/form/PasswordInput";
 
 export default function RegisterPage() {
   const [form, setForm] = useState({
@@ -90,48 +92,57 @@ export default function RegisterPage() {
         <form onSubmit={handleRegister} className="space-y-4">
 
           {/* Username */}
-          <input
+          <InputField
+            label="User Name"
             type="text"
             name="userName"
-            placeholder="Username"
             value={form.userName}
+            placeholder="Enter User Name"
             onChange={handleChange}
-            required
-            className="w-full p-3 rounded-lg border border-green-300 focus:outline-none focus:ring-2 focus:ring-green-500 dark:bg-gray-900 dark:text-white"
           />
 
+
           {/* Email */}
-          <input
+          <InputField
+            label="Email"
             type="email"
             name="email"
-            placeholder="Email"
             value={form.email}
+            placeholder="Enter Email"
             onChange={handleChange}
-            required
-            className="w-full p-3 rounded-lg border border-green-300 focus:outline-none focus:ring-2 focus:ring-green-500 dark:bg-gray-900 dark:text-white"
           />
 
           {/* Password */}
-          <input
-            type="password"
+          <PasswordInput
+            label="Create Strong Password"
             name="password"
-            placeholder="Password"
             value={form.password}
             onChange={handleChange}
-            required
-            className="w-full p-3 rounded-lg border border-green-300 focus:outline-none focus:ring-2 focus:ring-green-500 dark:bg-gray-900 dark:text-white"
           />
 
           {/* Binance Nickname */}
-          <input
+          <InputField
+            label="Binance Nick Name"
             type="text"
             name="binanceNickName"
-            placeholder="Binance Nickname"
             value={form.binanceNickName}
+            placeholder="Enter Binance Nick Name"
             onChange={handleChange}
-            required
-            className="w-full p-3 rounded-lg border border-green-300 focus:outline-none focus:ring-2 focus:ring-green-500 dark:bg-gray-900 dark:text-white"
           />
+
+          {/* <!-- 🔥 Note Badge --> */}
+          <div className="relative border border-green-400 rounded-lg p-4 text-sm text-gray-700 bg-green-50">
+
+            {/* <!-- 🔥 Floating Note (on border line) --> */}
+            <span className="absolute -top-3 left-4 bg-green-50 px-2 text-xs font-semibold text-green-600 border border-green-400 rounded">
+              Note
+            </span>
+
+            <p>
+              Connect your Binance nickname to your account and start earning pocket money instantly.
+            </p>
+
+          </div>
 
           {/* Button */}
           <button
