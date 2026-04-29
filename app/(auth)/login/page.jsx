@@ -66,24 +66,7 @@ export default function LoginPage() {
           </div>
 
           {/* 📝 Note */}
-          <div className="relative mt-2 mb-2 w-full">
-
-            <span className="absolute -top-3 left-3 bg-white dark:bg-black px-2 text-xs font-semibold text-green-600">
-              Note
-            </span>
-
-            <div className="border border-green-400 rounded-lg p-3 text-xs text-gray-700 dark:text-gray-300 bg-green-50 dark:bg-green-900/30 text-center">
-              If you don’t have a Binance account, please{" "}
-              <a
-                href="https://your-ref-link.com"
-                target="_blank"
-                className="text-green-600 font-semibold underline"
-              >
-                click here
-              </a>{" "}
-              to create one using our referral link.
-            </div>
-          </div>
+         
         </div>
 
         {/* Title */}

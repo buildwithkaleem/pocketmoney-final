@@ -75,13 +75,13 @@ export default function RegisterPage() {
             <div className="border border-green-400 rounded-lg p-3 text-xs text-gray-700 dark:text-gray-300 bg-green-50 dark:bg-green-900/30 text-center">
               If you don’t have a Binance account, please{" "}
               <a
-                href="https://your-ref-link.com" // 👈 apna referral link
+                href="https://play.google.com/store/apps/details?id=com.binance.dev&pcampaignid=web_share" // 👈 apna referral link
                 target="_blank"
                 className="text-green-600 font-semibold underline"
               >
                 click here
               </a>{" "}
-              to create one using our referral link.
+              to Create Binance Account
             </div>
           </div>
         </div>
