@@ -157,7 +157,7 @@ export default function BountyCard() {
 
             <div className="flex items-center justify-between">
               <h3 className="text-base font-semibold text-green-700 dark:text-green-300">
-                🎁 Amount
+                🎁 Reward
               </h3>
 
               <span className=" flex items-center gap-1 text-xs bg-green-100 dark:bg-green-900/30 text-green-600 px-2 py-1 rounded-2xl">
