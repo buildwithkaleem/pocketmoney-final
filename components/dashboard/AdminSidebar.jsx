@@ -116,7 +116,7 @@ export default function AdminSidebar() {
   // 🔥 LOGOUT FUNCTION
   const handleLogout = async () => {
         try {
-          const res = await api("/user/logout");
+          const res = await api("/user/logout","POST");
          if(res.success){
            toast.success(`Your Account Successfully LogOut ✅`);
            router.push("/login");
